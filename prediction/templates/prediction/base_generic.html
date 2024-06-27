@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <title>{% block title %}Heart Disease Prediction{% endblock %}</title>
+    <!-- Add your CSS links here -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- jQuery and Bootstrap Bundle -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <!-- Additional styles -->
+    <style>
+        body {
+            padding-top: 4.5rem; /* Adjust based on your navbar height */
+        }
+        .navbar-brand {
+            font-size: 1.5rem; /* Adjust the font size */
+            font-weight: bold; /* Ensure the brand name is bold */
+            color: #007bff; /* Blue color */
+        }
+        .navbar-light .navbar-nav .nav-link {
+            color: #333; /* Dark grey color for nav links */
+        }
+        .navbar-light .navbar-nav .nav-link:hover {
+            color: #007bff; /* Blue color on hover */
+        }
+        .navbar-toggler-icon {
+            background-color: #007bff; /* Blue color for the toggler icon */
+        }
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e0e0e0;
+        }
+        /* Responsive adjustments */
+        @media (max-width: 767px) {
+            body {
+                padding-top: 3.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="#">Heart Disease Prediction</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        {% if custom_user %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Predict</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/user_logout">Logout</a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'login' %}">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'register' %}">Register</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <main role="main">
+            <div class="mt-3">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </main>
+
+        <footer class="mt-5">
+            <p>&copy; 2024 Heart Disease Prediction</p>
+        </footer>
+    </div>
+</body>
+</html>

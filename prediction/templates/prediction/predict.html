@@ -1,0 +1,74 @@
+{% extends "prediction/base_generic.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg rounded-lg">
+                <div class="card-header bg-primary text-white">
+                    <h2 class="mb-0">Heart Disease Prediction</h2>
+                </div>
+                <div class="card-body">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="id_age" class="font-weight-bold">Age:</label>
+                            {{ form.age }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_sex" class="font-weight-bold">Sex:</label>
+                            {{ form.sex }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_cp" class="font-weight-bold">Chest Pain Type:</label>
+                            {{ form.cp }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_trestbps" class="font-weight-bold">Resting Blood Pressure (mm Hg):</label>
+                            {{ form.trestbps }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_chol" class="font-weight-bold">Serum Cholesterol (mg/dl):</label>
+                            {{ form.chol }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_fbs" class="font-weight-bold">Fasting Blood Sugar (> 120 mg/dl):</label>
+                            {{ form.fbs }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_restecg" class="font-weight-bold">Resting Electrocardiographic Results:</label>
+                            {{ form.restecg }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_thalach" class="font-weight-bold">Maximum Heart Rate Achieved:</label>
+                            {{ form.thalach }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_exang" class="font-weight-bold">Exercise Induced Angina:</label>
+                            {{ form.exang }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_oldpeak" class="font-weight-bold">ST Depression Induced by Exercise Relative to Rest:</label>
+                            {{ form.oldpeak }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_slope" class="font-weight-bold">Slope of the Peak Exercise ST Segment:</label>
+                            {{ form.slope }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_ca" class="font-weight-bold">Number of Major Vessels (0-3) Colored by Fluoroscopy:</label>
+                            {{ form.ca }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_thal" class="font-weight-bold">Thalassemia:</label>
+                            {{ form.thal }}
+                        </div>
+                        <button type="submit" class="btn btn-primary">Predict</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
