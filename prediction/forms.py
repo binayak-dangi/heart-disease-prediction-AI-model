@@ -3,17 +3,18 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 from .models import RegisterDetail
+from .validators import validate_full_name,validate_phone_number
 
 class UserRegistrationForm(forms.Form):
-    username = forms.CharField(label='Username', max_length=50)
-    full_name = forms.CharField(label='Full Name', max_length=50)
-    mobile_number = forms.CharField(label='Mobile Number', max_length=15)
-    email = forms.EmailField(label='Email', max_length=75)
-    password = forms.CharField(label='Password', widget=forms.PasswordInput, max_length=100)
-    confirm_password = forms.CharField(label='Confirm Password', widget=forms.PasswordInput, max_length=100)
-    gender = forms.CharField(label='Gender', max_length=6)
-    age = forms.IntegerField(label='Age')
-    weight = forms.FloatField(label='Weight')
+    username = forms.CharField(max_length=150)
+    full_name = forms.CharField(max_length=150, validators=[validate_full_name])
+    mobile_number = forms.CharField(max_length=10, validators=[validate_phone_number])
+    email = forms.EmailField()
+    password = forms.CharField(widget=forms.PasswordInput)
+    confirm_password = forms.CharField(widget=forms.PasswordInput)
+    gender = forms.ChoiceField(choices=[('M', 'Male'), ('F', 'Female')])
+    age = forms.IntegerField()
+    weight = forms.FloatField()
 
     def clean(self):
         cleaned_data = super().clean()
@@ -51,7 +52,7 @@ class PredictionForm(forms.Form):
     exang = forms.ChoiceField(choices=[(0, 'No'), (1, 'Yes')], label='Exercise Induced Angina')
     oldpeak = forms.FloatField(label='ST Depression Induced by Exercise Relative to Rest')
     slope = forms.ChoiceField(choices=[(0, 'Upsloping'), (1, 'Flat'), (2, 'Downsloping')], label='Slope of the Peak Exercise ST Segment')
-    ca = forms.ChoiceField(choices=[(0, '0'), (1, '1'), (2, '2'), (3, '3'), (4, '4')], label='Number of Major Vessels Colored by Flouroscopy')
+    ca = forms.ChoiceField(choices=[(0, '0'), (1, '1'), (2, '2'), (3, '3')], label='Number of Major Vessels Colored by Flouroscopy')
     thal = forms.ChoiceField(choices=[(0, 'Normal'), (1, 'Fixed Defect'), (2, 'Reversible Defect')], label='Thallium Heart Scan Results')
 
 
